@@ -1,12 +1,17 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+
+interface Props {
+  title: string;
+  description?: string;
+  image: string;
+}
 
 const useStyles = makeStyles({
   root: {
@@ -14,35 +19,26 @@ const useStyles = makeStyles({
   },
 });
 
-export const MCard = (): JSX.Element => {
+export const MCard = ({ title, description, image }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="https://www.muyseguridad.net/wp-content/uploads/2018/02/Lizard-Squad.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia component="img" alt={title} height="140" image={image} />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {description}
+        </Typography>
+      </CardContent>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          Edit
         </Button>
-        <Button size="small" color="primary">
-          Learn More
+        <Button size="small" color="secondary">
+          Delete
         </Button>
       </CardActions>
     </Card>
