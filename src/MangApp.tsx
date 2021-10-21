@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "@material-ui/core";
 import { MCard } from "./components/MCard/MCard";
+import {
+  cardMockData,
+  initialCardMockData,
+} from "./utils/MockData/mockCardData";
 
 function MangApp() {
+  const [cards, setCards] = useState(initialCardMockData);
+
+  const addArray = () => {
+    setCards([...cards, cardMockData]);
+  };
+
   return (
     <div className="MangApp">
-      <MCard
-        title="lizard"
-        description="Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica"
-        image="https://www.muyseguridad.net/wp-content/uploads/2018/02/Lizard-Squad.jpg"
-      />
+      <Button variant="contained" color="primary" onClick={addArray}>
+        Add
+      </Button>
+      {cards.map((card, key) => (
+        <MCard
+          title={`${key} ${card?.title}`}
+          description={card?.description}
+          image={card?.image}
+        />
+      ))}
     </div>
   );
 }
