@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Card, makeStyles, TextField } from "@material-ui/core";
 import { MCard } from "./components/MCard/MCard";
 import {
-  cardMockData,
   initialCardMockData,
 } from "./utils/MockData/mockCardData";
 
