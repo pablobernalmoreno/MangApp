@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  makeStyles,
-  TextField,
-} from "@material-ui/core";
+import { Button, Card, makeStyles, TextField } from "@material-ui/core";
 import { MCard } from "./components/MCard/MCard";
 import {
   cardMockData,
@@ -35,18 +30,61 @@ function MangApp() {
   const classes = useStyles();
 
   const [cards, setCards] = useState(initialCardMockData);
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [url, setUrl] = useState<string>("");
 
   const addArray = () => {
-    setCards([...cards, cardMockData]);
+    setCards([
+      ...cards,
+      {
+        title: title,
+        description: description,
+        image: url,
+      },
+    ]);
+  };
+
+  const addTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event) {
+      setTitle(event.target.value);
+    }
+  };
+
+  const addDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event) {
+      setDescription(event.target.value);
+    }
+  };
+
+  const addUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event) {
+      setUrl(event.target.value);
+    }
   };
 
   return (
     <>
       <Card className={classes.addCard}>
         <div className={classes.cardTextField}>
-          <TextField fullWidth placeholder="Titulo" variant="standard" />
-          <TextField fullWidth placeholder="Descripción" variant="standard" />
-          <TextField fullWidth placeholder="URL imagen" variant="standard" />
+          <TextField
+            fullWidth
+            placeholder="Titulo"
+            variant="standard"
+            onChange={addTitle}
+          />
+          <TextField
+            fullWidth
+            placeholder="Descripción"
+            variant="standard"
+            onChange={addDescription}
+          />
+          <TextField
+            fullWidth
+            placeholder="URL imagen"
+            variant="standard"
+            onChange={addUrl}
+          />
         </div>
         <div className={classes.addButton}>
           <Button variant="contained" color="primary" onClick={addArray}>
