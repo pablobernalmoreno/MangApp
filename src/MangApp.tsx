@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, makeStyles, TextField } from "@material-ui/core";
 import { MCard } from "./components/MCard/MCard";
-import {
-  initialCardMockData,
-} from "./utils/MockData/mockCardData";
+import { initialCardMockData } from "./utils/MockData/mockCardData";
 
 const useStyles = makeStyles({
   cardsContainer: {
@@ -32,34 +30,18 @@ function MangApp() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [url, setUrl] = useState<string>("");
+  const [card, setCard] = useState({
+    title: "",
+    description: "",
+    image: "",
+  });
 
   const addArray = () => {
-    setCards([
-      ...cards,
-      {
-        title: title,
-        description: description,
-        image: url,
-      },
-    ]);
+    setCards([...cards, card]);
   };
 
-  const addTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event) {
-      setTitle(event.target.value);
-    }
-  };
-
-  const addDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event) {
-      setDescription(event.target.value);
-    }
-  };
-
-  const addUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event) {
-      setUrl(event.target.value);
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCard({ ...card, [event.target.name]: event.target.value });
   };
 
   return (
@@ -68,21 +50,24 @@ function MangApp() {
         <div className={classes.cardTextField}>
           <TextField
             fullWidth
+            name="title"
             placeholder="Titulo"
             variant="standard"
-            onChange={addTitle}
+            onChange={handleChange}
           />
           <TextField
             fullWidth
+            name="description"
             placeholder="Descripción"
             variant="standard"
-            onChange={addDescription}
+            onChange={handleChange}
           />
           <TextField
             fullWidth
+            name="image"
             placeholder="URL imagen"
             variant="standard"
-            onChange={addUrl}
+            onChange={handleChange}
           />
         </div>
         <div className={classes.addButton}>
