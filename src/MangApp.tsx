@@ -27,9 +27,6 @@ function MangApp() {
   const classes = useStyles();
 
   const [cards, setCards] = useState(initialCardMockData);
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [url, setUrl] = useState<string>("");
   const [card, setCard] = useState({
     title: "",
     description: "",
